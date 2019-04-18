@@ -1,32 +1,15 @@
+// cleared out and made our own stuff
 export class MainController {
-  constructor ($timeout, webDevTec, toastr) {
+  constructor($http) {
     'ngInject';
-
-    this.awesomeThings = [];
-    this.classAnimation = '';
-    this.creationDate = 1555104645385;
-    this.toastr = toastr;
-
-    this.activate($timeout, webDevTec);
+// this object maincontroller set to http service
+    this.$http = $http;
   }
 
-  activate($timeout, webDevTec) {
-    this.getWebDevTec(webDevTec);
-    $timeout(() => {
-      this.classAnimation = 'rubberBand';
-    }, 4000);
-  }
-
-  getWebDevTec(webDevTec) {
-    this.awesomeThings = webDevTec.getTec();
-
-    angular.forEach(this.awesomeThings, (awesomeThing) => {
-      awesomeThing.rank = Math.random();
+  postMessage(){
+    //refers to current object that we post
+    this.$http.post('http://localhost:8080/api/message', {
+      msg: this.message
     });
-  }
-
-  showToastr() {
-    this.toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-    this.classAnimation = '';
   }
 }
