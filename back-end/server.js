@@ -43,6 +43,7 @@ app.post('/api/message', (req,res) =>{
 });
 
 //crud
+//callback
 function GetMessages(req, res){
     //empty gets all records
     //executes what it finds

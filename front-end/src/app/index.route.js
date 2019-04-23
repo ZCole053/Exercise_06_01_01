@@ -9,6 +9,12 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       controller: 'MainController',
       //nicknames controller
       controllerAs: 'main'
+    })
+    .state('auth',{
+      url: '/auth',
+      templateUrl: 'app/auth/auth.html',
+      controller: 'AuthController',
+      controllerAs: 'auth'
     });
 
   $urlRouterProvider.otherwise('/');
