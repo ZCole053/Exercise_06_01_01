@@ -5,7 +5,7 @@ export class AuthController{
         this.$auth = $auth;
     }
     register(){
-        
-        this.$auth.signup({email: 'dylancant@code.com'});
+        //grabs the current user object
+        this.$auth.signup(this.user);
     }
 }

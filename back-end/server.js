@@ -9,12 +9,9 @@ var mongoose = require('mongoose');
 var dbName = 'test';
 //has location of mongo runtime
 var url = 'mongodb://localhost:27017/' + dbName;
-//it is an object
-//param2 = structure of the database
-var Message = mongoose.model('Message', {
-    //putting in datatypes instead
-    msg: String
-});
+var Message = require('./Models/Message');
+var auth = require('./controllers/auth');
+
 
 //midleware
 app.use(bodyParser.json());
@@ -42,9 +39,7 @@ app.post('/api/message', (req,res) =>{
     res.status(200);
 });
 
-app.post('/auth/register', (req,res) => {
-    console.log(req.body);
-});
+app.post('/auth/register', auth.register);
 
 //crud
 //callback
