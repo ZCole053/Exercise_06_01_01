@@ -5,7 +5,13 @@ export class AuthController{
         this.$auth = $auth;
     }
     register(){
+        var vm = this;
         //grabs the current user object
-        this.$auth.signup(this.user);
+        this.$auth.signup(this.user)
+        //can return promise
+        .then(function(token) {
+            //grabs current object and holds it for later use
+            vm.$auth.setToken(token);
+        });
     }
 }
