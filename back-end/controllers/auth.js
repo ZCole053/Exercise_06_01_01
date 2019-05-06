@@ -33,6 +33,32 @@ module.exports = {
                 }
             });
         });
+    },
+    //essentially the callback
+    login: (req,res) => {
+        User.findOne({
+            email: req.body.email
+            //callback of findOne
+        }, (err, user) => {
+            //not finding data is not an err so we have to do not user
+            if(!user){
+                return res.status(401).send({
+                    message: 'Email or Password is invalid.'
+                })
+            }
+            //comparing passwords of the found user.
+            //error traping
+            if(req.body.pwd == user.pwd){
+                console.log(req.body, user.pwd);
+                res.status(200).send({
+                    token: createToken(user)
+                });
+            }else{
+                return res.status(401).send({
+                    message: 'Invalid email and/or password.'
+                });
+            }
+        });//check semi colon
     }
 }
 

@@ -20,7 +20,6 @@ var cors = require('./services/cors');
 //midleware
 app.use(bodyParser.json());
 
-
 //next = tells middleware what to do next 
 //used by every route
 //defaulted to route
@@ -31,6 +30,8 @@ app.get('/api/message', message.get);
 app.post('/api/message', checkAuthenticated, message.post);
 
 app.post('/auth/register', auth.register);
+
+app.post('/auth/login', auth.login);
 
 
 mongoose.connect(url, (err, db) => {
